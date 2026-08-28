@@ -7,7 +7,6 @@ import os
 import shutil
 from io import BytesIO
 import time
-import winsound  # Para sonido en Windows
 import threading
 
 # ============================================
@@ -272,6 +271,7 @@ class CRMExcel:
                 'Fecha_Registro', 'Fecha_Actualizacion'
             ])
             df.to_excel(self.archivo, index=False)
+            print(f"✅ Archivo {self.archivo} creado automáticamente")
     
     def leer_todos(self):
         """Leer todos los clientes - Forzar tipos de datos"""
@@ -510,14 +510,19 @@ def verificar_alertas():
     return alertas
 
 def reproducir_alerta():
-    """Reproduce un sonido de alerta (Windows)"""
+    """Reproduce un sonido de alerta (solo en Windows) o muestra notificación en otros sistemas"""
     try:
-        # Frecuencia y duración del sonido
-        winsound.Beep(800, 500)  # 800 Hz, 500 ms
-        time.sleep(0.2)
-        winsound.Beep(1000, 500)  # 1000 Hz, 500 ms
+        import platform
+        if platform.system() == "Windows":
+            import winsound
+            winsound.Beep(800, 500)
+            time.sleep(0.2)
+            winsound.Beep(1000, 500)
+        else:
+            # En Linux/Mac, mostrar notificación visual
+            st.toast("🔔 ¡Alerta de cita próxima!", icon="🔔")
     except:
-        pass  # Silenciosamente falla si no hay soporte de sonido
+        pass  # Silenciosamente falla si no hay soporte
 
 # ============================================
 # MENÚ PRINCIPAL
