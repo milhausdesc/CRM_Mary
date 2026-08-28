@@ -529,12 +529,12 @@ def reproducir_alerta():
 # ============================================
 # Inicializar session_state si no existe
 if 'pagina' not in st.session_state:
-    st.session_state.pagina = "🏠 VISTA GENERAL"
+    st.session_state.pagina = "🏠 VISTA GENERAL"  # ← Cambiado a VISTA GENERAL
 if 'alertas_mostradas' not in st.session_state:
     st.session_state.alertas_mostradas = set()
 
-# Definir las páginas
-paginas = ["🏠 Dashboard", "➕ Nuevo Cliente", "📋 Mis Clientes", 
+# Definir las páginas - La primera debe ser "🏠 VISTA GENERAL"
+paginas = ["🏠 VISTA GENERAL", "➕ Nuevo Cliente", "📋 Mis Clientes", 
            "📞 Interacciones", "🔍 Buscar", "📊 Reportes", "⚙️ Configuración"]
 
 # Header
@@ -658,10 +658,10 @@ with st.sidebar:
 menu = st.session_state.pagina
 
 # ============================================
-# PÁGINA: DASHBOARD
+# PÁGINA: VISTA GENERAL (antes Dashboard)
 # ============================================
-if menu == "🏠 Dashboard":
-    st.header("📈 Panel de Control")
+if menu == "🏠 VISTA GENERAL":
+    st.header("📈 Panel de Control - Vista General")
     
     stats = crm.obtener_estadisticas()
     df = crm.leer_todos()
