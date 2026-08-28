@@ -529,7 +529,7 @@ def reproducir_alerta():
 # ============================================
 # Inicializar session_state si no existe
 if 'pagina' not in st.session_state:
-    st.session_state.pagina = "🏠 Dashboard"
+    st.session_state.pagina = "🏠 VISTA GENERAL"
 if 'alertas_mostradas' not in st.session_state:
     st.session_state.alertas_mostradas = set()
 
